@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peluquería - Reservar Horario</title>
+    <link rel="stylesheet" href="styleeee.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Reserva tu horario</h1>
+        <p>Selecciona cuando quieres que te corte:</p>
+        <div class="horario" id="horario">
+        </div>
+    </div>
+    <script>
+        
+        const horarios = [
+            "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
+            "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
+            "13:00 PM", "13:30 PM", "14:00 PM", "14:30 PM",
+            "16:30 PM", "17:00 PM", "17:30 PM", "18:00 PM",
+            "19:00 PM", "19:30 PM", "20:00 PM", "20:30 PM",
+        ];
+
+        
+        const horariosReservados = ["10:30 AM", "13:30 PM" , "17:00 PM", "19:30 PM", "17:30 PM", "12:00 PM", "09:00 AM", "20:30 PM"];
+
+        
+        const contenedorHorario = document.getElementById("horario");
+
+        
+        horarios.forEach(hora => {
+            const div = document.createElement("div");
+            div.textContent = hora;
+            div.classList.add("hora");
+
+            
+            if (horariosReservados.includes(hora)) {
+                div.classList.add("reservado");
+            } else {
+                
+                div.addEventListener("click", () => {
+                    alert(`Has reservado el horario: ${hora}`);
+                    div.classList.add("reservado");
+                    div.textContent = `${hora} (Reservado)`;
+                    div.style.pointerEvents = "none"; 
+                });
+            }
+
+            contenedorHorario.appendChild(div);
+        });
+    </script>
+</body>
+</html>
